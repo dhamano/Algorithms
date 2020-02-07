@@ -3,7 +3,27 @@
 import math
 
 def recipe_batches(recipe, ingredients):
-  pass 
+    max_batch = 0
+    keys = []
+
+    if len(recipe) > len(ingredients):
+        return 0
+
+    for key in recipe.keys():
+        keys.append(key)
+
+    for i in range(0, len(recipe)):
+        cur_key = keys[i]
+        count = math.floor(ingredients[cur_key] / recipe[cur_key])
+        if count < 1:
+            return 0
+        
+        if i == 0:
+            max_batch = count
+        elif (count < max_batch):
+            max_batch = count
+
+    return max_batch
 
 
 if __name__ == '__main__':
